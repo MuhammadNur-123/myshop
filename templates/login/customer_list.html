@@ -1,0 +1,49 @@
+{% extends 'common_code/base.html' %}
+{% block title %}Coustomer List{% endblock title %}
+{% load static %}
+{% block content %}
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Locality</th>
+                <th>City</th>
+                <th>Zipcode</th>
+                <th>Division</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.locality }}</td>
+                <td>{{ customer.city }}</td>
+                <td>{{ customer.zipcode }}</td>
+                <td>{{ customer.division }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No customers found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock content %}	

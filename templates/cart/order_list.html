@@ -1,0 +1,87 @@
+{% extends 'common_code/base.html' %}
+{% block title %}Order List{% endblock title %}
+
+{% block content %}
+    <h1>Order List</h1>
+    <table class="order-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Ordered Date</th>
+                <th>Status</th>
+                <th>Total Cost</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.user.username }}</td>
+                <td>{{ order.customer.name }}</td>
+                <td>{{ order.product.title }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.ordered_date }}</td>
+                <td>{{ order.status }}</td>
+                <td>${{ order.total_cost }}</td>
+                <td>
+                    <a href="{% url 'order_update' order.id %}" class="btn btn-edit">Edit</a>
+                    <a href="{% url 'order_delete' order.id %}" class="btn btn-delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <style>
+        /* Order Table Styling */
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.order-table th, .order-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.order-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-edit {
+    background-color: #007bff;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-submit {
+    background-color: #28a745;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+}
+
+    </style>
+{% endblock content %}

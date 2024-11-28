@@ -1,0 +1,12 @@
+{% extends 'common_code/base.html' %}
+{% block title %}Confirm Delete{% endblock title %}
+
+{% block content %}
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete this order?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-delete">Yes, Delete</button>
+        <a href="{% url 'order_list' %}" class="btn btn-cancel">Cancel</a>
+    </form>
+{% endblock content %}

@@ -1,0 +1,127 @@
+{% extends 'common_code/base.html' %}
+{% block title %} Product List {% endblock title %}
+{% load static %}
+
+{% block content %}
+<div style="height: 50px;">
+
+</div>
+    <h1>Product List</h1>
+    <a href="{% url 'product_create' %}" class="create-btn">Create New Product</a>
+
+    <!-- Display success message -->
+    {% if messages %}
+        <div class="success-messages">
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Selling Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.title }}</td>
+                <td>{{ product.get_category_display }}</td>
+                <td>{{ product.selling_price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <a href="{% url 'product_update' product.id %}" class="a1">Edit</a> |
+                    <a href="{% url 'product_delete' product.id %}"class="a1">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.a1{
+    text-decoration: none;
+    color: #007bff;
+}
+
+a1:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.success-messages {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.create-btn {
+    display: inline-block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.create-btn:hover {
+    background-color: #d0dae5;
+}
+
+
+    </style>
+{% endblock content %}

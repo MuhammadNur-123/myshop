@@ -1,0 +1,140 @@
+{% extends 'common_code/base.html' %}
+{% block title %} Contact {% endblock title %}
+{% load static %}
+{% block content %}
+			
+			
+			<!-- Main Content -->
+			<div id="content" class="site-content">
+				<!-- Breadcrumb -->
+				<div id="breadcrumb">
+					<div class="container">
+						<h2 class="title">Contact</h2>
+						
+						<ul class="breadcrumb">
+							<li><a href="{% url 'home' %}" title="Home">Home</a></li>
+							<li><span>Contact</span></li>
+						</ul>
+					</div>
+				</div>
+			
+				<div class="container">
+					<div class="contact-page">
+						<div class="contact-info">
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									<div class="item d-flex">
+										<div class="item-left">
+											<div class="icon"><i class="zmdi zmdi-email"></i></div>
+										</div><br>
+										<div class="item-right d-flex">
+											<div class="title">Email:</div>
+											<div class="content">
+												
+												<a href="mailto:emukhan130454@gmail.com">nurhossen579502@gmail.com</a><br>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									<div class="item d-flex justify-content-center">
+										<div class="item-left">
+											<div class="icon"><i class="zmdi zmdi-home"></i></div>
+										</div>
+										<div class="item-right d-flex">
+											<div class="title">Address:</div><br>
+											<div class="content">
+												Bd-Task, Mannan Plaza 4th Floor,<br> Dhaka Division, Bangladesh
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									<div class="item d-flex justify-content-end">
+										<div class="item-left">
+											<div class="icon"><i class="zmdi zmdi-phone"></i></div>
+										</div>
+										<div class="item-right d-flex">
+											<div class="title">Holine & Phone Number:<br><br></div>
+										</div>
+								
+											<div class="content">
+												01981706084 , 01324302464<br><br>
+												00981706084 , 009324302464
+											</div>
+										</div>
+										</div>
+								
+					
+						
+        <!-- Contact Start -->
+                   <div class="container-fluid contact py+5" style="text-align: center;">
+									<div class="container py-5">
+										<div class="p-5 bg-light rounded">
+											<div class="row g-4">
+												
+												<div class="col-lg-12">
+													<div class="h-100 rounded">
+														<iframe  style="height: 600px ;width: 1300px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.7126402359313!2d90.41841507538193!3d23.829442978616566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a4136c4b61%3A0x19549f5462616f04!2sBdtask%20Limited!5e1!3m2!1sen!2sbd!4v1729417784511!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+													</div>
+												
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							
+						
+						<div class="contact-intro">
+							<p>“Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Proin gravida nibh vel velit auctor”</p>
+							<img src="{% static 'img/contact-icon.png' %}" alt="Contact Comment">
+						</div>
+						<div id="content" class="site-content">
+							<div class="container">
+								<div class="contact-page">
+									<div class="contact-info">
+										<!-- Contact Information here -->
+									</div>
+						
+									<div class="contact-form form">
+										<form method="post">
+											{% csrf_token %}
+											<div class="form-group row">
+												<div class="col-md-6">
+													{{ form.name }}
+												</div>
+												<div class="col-md-6">
+													{{ form.email }}
+												</div>
+											</div>
+											<div class="form-group">
+												{{ form.subject }}
+											</div>
+											<div class="form-group">
+												{{ form.content }}
+											</div>
+											<div class="form-group text-center">
+												<button type="submit" class="btn btn-primary">Send Message</button>
+											</div>
+										</form>
+										{% if messages %}
+											<ul class="messages">
+												{% for message in messages %}
+													<li class="alert alert-success">{{ message }}</li>
+												{% endfor %}
+											</ul>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+{% endblock content %}

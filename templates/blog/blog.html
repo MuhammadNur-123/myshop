@@ -1,0 +1,170 @@
+{% extends 'common_code/base.html' %}
+{% block title %} Blog {% endblock title %}
+{% load static %}
+
+{% block content %}
+  <!-- Main Content -->
+  <div id="content" class="site-content">
+    <!-- Breadcrumb -->
+    <div id="breadcrumb">
+      <div class="container">
+        <h2 class="title">{{ blog.title }}</h2>
+        <ul class="breadcrumb">
+          <li><a href="{% url 'home' %}" title="Home">Home</a></li>
+          <li><a href="{% url 'blog_list' %}" title="Blog">Blog</a></li>
+          <li><span>{{ blog.title }}</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <!-- Sidebar -->
+        <div id="left-column" class="sidebar col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <!-- Block - Product Categories -->
+          <div class="block product-categories">
+            <h3 class="block-title">Categories</h3>
+            <div class="block-content">
+              <div class="item">
+                <span class="arrow collapsed" data-toggle="collapse" data-target="#vegetables" aria-expanded="false" role="button">
+                  <i class="zmdi zmdi-minus"></i>
+                  <i class="zmdi zmdi-plus"></i>
+                </span>
+                <a class="category-title" href="{% url 'vegetable' %}">Vegetables</a>
+                <div class="sub-category collapse" id="vegetables" aria-expanded="true" role="main">
+                  <div class="item"><a href="#">Tomato</a></div>
+                  <div class="item"><a href="#">Broccoli</a></div>
+                  <div class="item"><a href="#">Cabbage</a></div>
+                  <div class="item"><a href="#">Cucumber</a></div>
+                </div>
+              </div>
+              
+              <div class="item">
+                <span class="arrow collapsed" data-toggle="collapse" data-target="#fruits" aria-expanded="false" role="button">
+                  <i class="zmdi zmdi-minus"></i>
+                  <i class="zmdi zmdi-plus"></i>
+                </span>
+                <a class="category-title" href="{% url 'fruit' %}">Fruits</a>
+                <div class="sub-category collapse" id="fruits" aria-expanded="true" role="main">
+                  <div class="item"><a href="#">Orange</a></div>
+                  <div class="item"><a href="#">Apple</a></div>
+                  <div class="item"><a href="#">Banana</a></div>
+                  <div class="item"><a href="#">Strawberry</a></div>
+                </div>
+              </div>
+
+              <div class="item">
+                <span class="arrow collapsed" data-toggle="collapse" data-target="#juices" aria-expanded="false" role="button">
+                  <i class="zmdi zmdi-minus"></i>
+                  <i class="zmdi zmdi-plus"></i>
+                </span>
+                <a class="category-title" href="{% url 'juice' %}">Juices</a>
+                <div class="sub-category collapse" id="juices" aria-expanded="true" role="main">
+                  <div class="item"><a href="#">Orange Juice</a></div>
+                  <div class="item"><a href="#">Tomato Juice</a></div>
+                  <div class="item"><a href="#">Apple Juice</a></div>
+                  <div class="item"><a href="#">Peach Juice</a></div>
+                </div>
+              </div>
+              
+              <!-- More categories... -->
+              <div class="item">
+                <a class="category-title" href="{% url 'tea' %}">Tea and Coffee</a>
+              </div>
+              <div class="item"><a class="category-title" href="#">Jam</a></div>
+              <div class="item"><a class="category-title" href="#">Seafood</a></div>
+              <div class="item"><a class="category-title" href="#">Fresh Meats</a></div>
+            </div>
+          </div>
+
+          <!-- Block - Recent Posts -->
+          <div class="block posts recent-posts">
+            <h3 class="block-title">Recent Posts</h3>
+            <div class="block-content">
+              <div class="post-item">
+                <a class="post-title" href="#">5 Best Fruits To Make You Fresh And Healthy</a>
+                <div class="post-info">
+                  <span class="comment item"><i class="zmdi zmdi-comments"></i>2 Comments</span>
+                  <span class="date item"><i class="zmdi zmdi-calendar-note"></i>14 Mar, 2018</span>
+                </div>
+                <div class="post-description">Proin gravida nibh vel velit auctor aliquet. Aenean lorem quis bibendum auctor...</div>
+                <div class="post-readmore"><a href="#">Read more</a></div>
+              </div>
+
+              <!-- More recent posts... -->
+            </div>
+          </div>
+
+          <!-- Block - Blog Tags -->
+          <div class="block tags blog-tags">
+            <h3 class="block-title">Blog Tags</h3>
+            <div class="block-content">
+              <ul>
+                {% if blog.tags.exists %}
+                  {% for tag in blog.tags.all %}
+                    <li><a href="#">{{ tag.name }}</a></li>
+                  {% endfor %}
+                {% else %}
+                  <li>No tags available</li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Block - Banner -->
+          <div class="block banner">
+            <div class="block-content">
+              <div class="effect">
+                <img class="img-responsive" src="{% static 'img/blog-banner.jpg' %}" alt="Banner">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="center-column" class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+          <div class="blog-detail">
+            <div class="post-item">
+              <div class="post-image">
+                {% if blog.image %}
+                  <img class="img-responsive" src="{{ blog.image.url }}" alt="Blog Image">
+                {% else %}
+                  <img class="img-responsive" src="{% static 'img/default-blog.jpg' %}" alt="Default Blog Image">
+                {% endif %}
+              </div>
+
+              <h1 class="post-title">{{ blog.title }}</h1>
+              
+              <div class="post-content border-bottom">
+                <p>{{ blog.content }}</p>
+              </div>
+              
+              <div class="post-meta border-bottom">
+                <div class="post-info">
+                  <span class="date item"><i class="zmdi zmdi-calendar-note"></i>Created at: {{ blog.created_at }}</span>
+                  <span class="author item"><i class="zmdi zmdi-account"></i>Author: {{ blog.author.username }}</span>
+                </div>
+
+                <div class="product-share border-bottom">
+                  <div class="item">
+                    <p>Share this blog:</p>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">Share on Facebook</a>
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this blog: {{ blog.title }}" target="_blank">Share on Twitter</a>
+                    <a href="mailto:?subject=I wanted you to see this blog&body=Check out this blog: {{ blog.title }} - {{ request.build_absolute_uri }}">Share via Email</a>
+                  </div>
+                  <div class="item">
+                    <a href="javascript:window.print()"><i class="zmdi zmdi-print" aria-hidden="true"></i><span class="text">Print</span></a>
+                  </div>
+                </div>
+              </div>
+
+             
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

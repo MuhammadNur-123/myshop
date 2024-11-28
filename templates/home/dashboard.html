@@ -1,0 +1,174 @@
+{% extends 'common_code/base.html' %}
+{% block title %} Dashboard {% endblock title %}
+{% load static %}
+{% block content %}
+<div style="height: 100px;">
+
+</div>
+<h1 style="text-align: center;">Dashboard</h1>
+
+<div class="container">
+  <div class="page-inner">
+    <div class="row">
+      <!-- Customer Card -->
+      <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-primary card-round">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5">
+                <div class="icon-big text-center">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+              <a href="{% url 'customer_list'%}">
+              <div class="col-7 col-stats">
+                <div class="numbers">
+                  <p class="text-success fw-bold">Customer</p>
+                  <h4 class="card-title">{{ total_customer }}</h4>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card -->
+      <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-info card-round">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5">
+                <div class="icon-big text-center">
+                  <i class="fas fa-box"></i>
+                </div>
+              </div>
+              <a href="{% url 'product_list'%}">
+              <div class="col-7 col-stats">
+                <div class="numbers">
+                  
+                  <p class="text-blue fw-bold">Products</p>
+                  <h4 class="card-title">{{ total_product }}</h4>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders Card -->
+      <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-success card-round">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5">
+                <div class="icon-big text-center">
+                  <i class="fas fa-chart-pie"></i>
+                </div>
+              </div>
+              <a href="{% url 'order_list'%}">
+              <div class="col-7 col-stats">
+                <div class="numbers">
+                  <p class="text-danger fw-bold">Orders</p>
+                  <h4 class="card-title">{{ total_order }}</h4>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart Card -->
+      <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-secondary card-round">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5">
+                <div class="icon-big text-center">
+                  <i class="far fa-check-circle"></i>
+                </div>
+              </div>
+              <div class="col-7 col-stats">
+                <div class="numbers">
+                  <p class="text-success fw-bold">Cart</p>
+                  <h4 class="card-title">{{ total_card }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- End of row -->
+  </div> <!-- End of page-inner -->
+</div> <!-- End of container -->
+<style>
+    .container {
+        margin-top: 50px;
+    }
+    
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card .card-body {
+        padding: 20px 20px;
+    }
+    
+   
+    
+    .card-stats .numbers {
+        text-align: center;
+    }
+    .icon-big i {
+    font-size: 50px; /* Bigger size */
+    color: #007bff; /* Change color to blue */
+    margin-bottom: 10px; /* Add some margin if needed */
+}
+
+    .text-success {
+        color: #28a745;
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    .text-danger {
+        color: #dc3545;
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    .text-blue {
+        color: #040e19;
+        text-align: center;
+        font-size: 20px;
+        
+    }
+    
+    .text-max {
+        color: #343a40;
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    .card-primary {
+        background: linear-gradient(60deg, #26c6da, #00acc1);
+    }
+    
+    .card-info {
+        background: linear-gradient(60deg, #42a5f5, #1e88e5);
+    }
+    
+    .card-success {
+        background: linear-gradient(60deg, #66bb6a, #43a047);
+    }
+    
+    .card-secondary {
+        background: linear-gradient(60deg, #bdbdbd, #757575);
+    }
+    
+    </style>
+    {% endblock content %}	

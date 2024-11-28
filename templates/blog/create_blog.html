@@ -1,0 +1,13 @@
+{% extends 'common_code/base.html' %}
+{% block title %} Blog {% endblock title %}
+{% load static %}
+{% block content %}
+    <h1>Create a New Blog Post</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Create Blog</button>
+    </form>
+    <br><br>
+    <a href="{% url 'blog_list' %}" class="btn btn-danger">Back to Blog List</a>
+{% endblock content%}

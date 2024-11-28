@@ -1,0 +1,12 @@
+{% extends 'common_code/base.html' %}
+{% block title %}Update Order{% endblock title %}
+
+{% block content %}
+    <h1>Update Order</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-submit">Save</button>
+        <a href="{% url 'order_list' %}" class="btn btn-cancel">Cancel</a>
+    </form>
+{% endblock content %}

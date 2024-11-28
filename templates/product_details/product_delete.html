@@ -1,0 +1,12 @@
+{% extends 'common_code/base.html' %}
+{% block title %}Confirm Delete{% endblock title %}
+
+{% block content %}
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete the product <strong>{{ product.title }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'product_list' %}">Cancel</a>
+    </form>
+{% endblock content %}

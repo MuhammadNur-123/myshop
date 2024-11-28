@@ -1,0 +1,120 @@
+{% extends 'common_code/base.html' %}
+{% block title %} Blog {% endblock title %}
+{% load static %}
+{% block content %}
+   
+    <!-- Main Content -->
+    <div id="content" class="site-content">
+        <!-- Breadcrumb -->
+        <div id="breadcrumb">
+            <div class="container">
+                <h2 class="title">Our Blog</h2>
+                <ul class="breadcrumb">
+                    <li><a href="#" title="Home">Home</a></li>
+                    <li><span>Our Blog</span></li>
+                </ul>
+            </div>
+        </div>
+		
+        
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div id="left-column" class="sidebar col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <!-- Block - Product Categories -->
+                    <div class="block product-categories">
+                        <h3 class="block-title">Categories</h3>
+                        <div class="block-content">
+                            <!-- Category items (unchanged) -->
+                        </div>
+                    </div>
+
+                    <!-- Block - Blog Tags -->
+                    
+                    <div class="block tags blog-tags">
+                        <h3 class="block-title">Blog Tags</h3>
+                        <div class="block-content">
+                          <ul>
+                            {% if blog.tags.exists %}
+                              {% for tag in blog.tags.all %}
+                                <li><a href="#">{{ tag.name }}</a></li>
+                              {% endfor %}
+                            {% else %}
+                              <li>No tags available</li>
+                            {% endif %}
+                          </ul>
+                        </div>
+                      </div>
+            
+
+                    <!-- Block - Banner -->
+                    <div class="block banner">
+                        <div class="block-content">
+                            <div class="effect">
+                                <img class="img-responsive" src="{% static 'img/product/category-2.jpg' %}" alt="Banner">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog List -->
+				<h1 style="text-align: center;">Blog List</h1>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    {% for blog in blogs %}
+                    <div class="post-item mb-4">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 post-left">
+                                <div class="post-image">
+                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                        <img class="img-responsive" src="{{ blog.image.url }}" alt="Blog Image" style="width: 150px; height: 150px;">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 post-right">
+                                <a class="post-title" href="{% url 'blog_detail' blog.slug %}"><h3>{{ blog.title }}</h3></a>
+                                <h5>Author: {{ blog.author.username }}</h5>
+                                <div class="post-info">
+                                    <span class="date item"><i class="zmdi zmdi-calendar-note"></i> Created at: {{ blog.created_at }}</span>
+                                </div>
+                                <div class="post-description">
+                                    <p>{{ blog.content|truncatewords:20 }}</p>
+                                    <a href="{% url 'blog_detail' blog.slug %}">View more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <a href="{% url 'create_blog' %}" class="btn btn-primary">Create a new blog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="latest-news layout-2">
+        <div class="block-title">
+          <h2 class="title">Related <span>News</span></h2>
+        </div>
+        <div class="block-content">
+          <div class="row">
+            {% for related_blog in related_blogs %}
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="blog-item">
+                  <div class="blog-image">
+                    <a href="{{ related_blog.get_absolute_url }}" class="zoom-effect">
+                      <img src="{{ related_blog.image.url }}" alt="{{ related_blog.title }}">
+                    </a>
+                  </div>
+                  <div class="blog-info">
+                    <div class="blog-title"><a href="{{ related_blog.get_absolute_url }}">{{ related_blog.title }}</a></div>
+                    <div class="blog-desc">{{ related_blog.content|truncatewords:20 }}</div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      
+{% endblock content %}

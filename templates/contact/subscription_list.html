@@ -1,0 +1,50 @@
+{% extends 'common_code/base.html' %}
+{% block title %}Newsletter Subscriptions{% endblock title %}
+{% load static %}
+{% block content %}
+    <h1>Newsletter Subscriptions</h1>
+    <table border="1" class="styled-table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Subscribed At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subscription in subscriptions %}
+                <tr>
+                    <td>{{ subscription.email }}</td>
+                    <td>{{ subscription.subscribed_at }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">No subscriptions found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <style>
+        .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+    width: 100%;
+}
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+.styled-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+    </style>
+{% endblock content %}

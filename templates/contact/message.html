@@ -1,0 +1,41 @@
+{% extends 'common_code/base.html' %}
+{% block title %} Message {% endblock title %}
+{% load static %}
+{% block content %}
+
+
+<h1>Submitted Messages</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Date Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in messages %}
+                <tr>
+                    <td>{{ message.name }}</td>
+                    <td>{{ message.email }}</td>
+                    <td>{{ message.subject }}</td>
+                    <td>{{ message.content }}</td>
+                    <td>{{ message.created_at|date:"M d, Y H:i" }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No messages found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock content %}
+
+
+    
+   
+
